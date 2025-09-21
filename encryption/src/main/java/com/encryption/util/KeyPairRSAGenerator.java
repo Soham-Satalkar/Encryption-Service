@@ -32,13 +32,13 @@ public class KeyPairRSAGenerator {
         PrivateKey privateKey = keyPair.getPrivate();
 
         //3.Convert key to Base64-encoded Strings
-        String publicKeyPEM = "BEGIN PUBLIC KEY--\n"
+        String publicKeyPEM = "-----BEGIN PUBLIC KEY-----\n"
                 + Base64.getMimeEncoder(64,new byte[]{'\n'}).encodeToString(publicKey.getEncoded())
-                + "\n--END PUBLIC KEY--\n" ;
+                + "\n-----END PUBLIC KEY-----\n" ;
 
-        String privateKeyPEM = "BEGIN PRIVATE KEY--\n"
+        String privateKeyPEM = "-----BEGIN PRIVATE KEY-----\n"
                 + Base64.getMimeEncoder(64,new byte[]{'\n'}).encodeToString(privateKey.getEncoded())
-                + "\n--END PRIVATE KEY--\n";
+                + "\n------END PRIVATE KEY-----\n";
 
         //4.Save to files
         try(FileOutputStream pubOut = new FileOutputStream("public_key.pem")){
