@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: encryption
+
+server:
+  port: 8080
+
+external:
+  service:
+    receiver: http://localhost:8084/api/receiver/auth
