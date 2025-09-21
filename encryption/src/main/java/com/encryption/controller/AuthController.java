@@ -1,5 +1,6 @@
 package com.encryption.controller;
 
+import com.encryption.model.AuthResponse;
 import com.encryption.service.IAuthenticationService;
 import com.encryption.util.CryptoService;
 import org.json.JSONObject;
@@ -22,7 +23,7 @@ public class AuthController {
     }
 
     @PostMapping(path = "/auth", consumes = "application/json", produces = "application/json")
-    public String authenticationRequest(@RequestBody String data) throws Exception {
+    public AuthResponse authenticationRequest(@RequestBody String data) throws Exception {
 //        return cryptoService.encryptData(data);
         return authenticationService.authRequest(data);
     }

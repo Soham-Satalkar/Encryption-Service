@@ -1,6 +1,7 @@
 package com.encryption.service;
 
 import com.encryption.config.RestTemplateHelper;
+import com.encryption.model.AuthResponse;
 import com.encryption.util.CryptoService;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
@@ -35,18 +36,13 @@ public class AuthenticationService implements IAuthenticationService{
         this.restTemplateHelper = restTemplateHelper;
     }
 
-    public String authRequest(String data) throws InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeySpecException, IOException, InvalidKeyException {
+    public AuthResponse authRequest(String data) throws InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeySpecException, IOException, InvalidKeyException {
 
         JSONObject encryptedRequest = cryptoService.encryptData(data);
         log.info("Sending encrypted request to receiver: {}", encryptedRequest);
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        HttpEntity<String> request = new HttpEntity<>(encryptedRequest.toString(), headers);
-
-        String response = restTemplateHelper.postForEntity(
-                String.class,                  // response type
+        AuthResponse response = restTemplateHelper.postForEntity(
+                AuthResponse.class,                  // response type
                 receiverUrl, // full URL
                 encryptedRequest.toString()    // body as String
         );

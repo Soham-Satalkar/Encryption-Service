@@ -1,5 +1,7 @@
 package com.encryption.service;
 
+import com.encryption.model.AuthResponse;
+
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
@@ -11,6 +13,6 @@ import java.security.spec.InvalidKeySpecException;
 
 public interface IAuthenticationService {
 
-    String authRequest(String data) throws InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeySpecException, IOException, InvalidKeyException;
+    AuthResponse authRequest(String data) throws InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeySpecException, IOException, InvalidKeyException;
 
 }
